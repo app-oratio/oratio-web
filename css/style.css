@@ -1,0 +1,411 @@
+/* =========================
+   ORATIO PWA - BASE CSS
+   ========================= */
+
+/* =========================
+   VARIÁVEIS (TEMA CLARO)
+   ========================= */
+
+:root {
+  /* Fundos */
+  --bg-primary: #fffbfe;
+  --bg-secondary: #f3edf7;
+  --bg-tertiary: #e6e0e9;
+
+  /* Divisórias e superfícies */
+  --surface-divider: #e7e0ec;
+
+  /* Texto */
+  --text-primary: #1c1b1f;
+  --text-secondary: #49454f;
+  --text-hint: #79747e;
+
+  /* Cores principais */
+  --color-primary: #004a98;
+  --link-color: #0b57d0;
+
+  /* Botões */
+  --button-primary: #004a98;
+  --button-primary-strong: #004a98;
+  --button-on-primary: #ffffff;
+
+  /* Destaques */
+  --accent-teal: #2ec4b6;
+
+  /* Interação */
+  --ripple-color: rgba(0, 0, 0, 0.15);
+
+  /* Bordas */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+  /* Espaçamentos */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+}
+
+/* =========================
+   TEMA ESCURO
+   ========================= */
+
+[data-theme="dark"] {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2c2c2c;
+
+  --surface-divider: #3a3a3a;
+
+  --text-primary: #e6e1e5;
+  --text-secondary: #cac4d0;
+  --text-hint: #938f99;
+
+  --color-primary: #8ab4f8;
+  --link-color: #8ab4f8;
+
+  --button-primary: #e6e0e9;
+  --button-primary-strong: #004a98;
+  --button-on-primary: #000000;
+
+  --accent-teal: #6fe3d6;
+
+  --ripple-color: rgba(255, 255, 255, 0.12);
+
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.28);
+}
+
+/* =========================
+   RESET BÁSICO
+   ========================= */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* =========================
+   UTILITÁRIOS DE TEXTO
+   ========================= */
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-hint {
+  color: var(--text-hint);
+}
+
+/* =========================
+   TIPOGRAFIA BASE
+   ========================= */
+
+.title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   LAYOUT GERAL
+   ========================= */
+
+.page {
+  padding: var(--space-4);
+}
+
+.section + .section {
+  margin-top: var(--space-6);
+}
+
+/* =========================
+   TOOLBAR
+   ========================= */
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--bg-primary);
+}
+
+/* Container interno */
+.toolbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 0 16px;
+}
+
+/* Título */
+.toolbar__title {
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Botões de ícone */
+.toolbar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  color: var(--color-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Linha inferior */
+.toolbar__divider {
+  height: 1px;
+  background: var(--surface-divider);
+}
+
+/* =========================
+   BOTÕES
+   ========================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 44px;
+  padding: 0 16px;
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  background: var(--button-primary);
+  color: var(--button-on-primary);
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* Efeito ao clicar */
+.btn:active {
+  transform: scale(0.985);
+}
+
+/* Botão grande arredondado */
+.btn-pill {
+  border-radius: var(--radius-pill);
+  min-height: 48px;
+  padding: 0 22px;
+}
+
+/* Botão menor */
+.btn-sm {
+  min-height: 38px;
+  padding: 0 14px;
+  font-size: 0.85rem;
+}
+
+/* Ícone dentro do botão */
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* =========================
+   CARDS (WIDGETS)
+   ========================= */
+
+.card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Card clicável */
+.card--interactive {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.card--interactive:active {
+  transform: scale(0.99);
+}
+
+/* Imagem */
+.card__media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-tertiary);
+}
+
+/* Conteúdo */
+.card__body {
+  padding: 14px 16px 16px;
+}
+
+/* Título */
+.card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Subtítulo */
+.card__subtitle {
+  margin-top: 6px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+/* Badge/destaque */
+.card__badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--text-primary);
+  color: var(--bg-primary);
+
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* =========================
+   MENU (ABAS)
+   ========================= */
+
+.menu-tab {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Aba ativa */
+.menu-tab.is-active {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* =========================
+   DIVISOR
+   ========================= */
+
+.divider {
+  height: 1px;
+  background: var(--surface-divider);
+}
+
+/* =========================
+   AVISO / ALERTA
+   ========================= */
+
+.alert {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.alert__title {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.alert__text {
+  margin-top: 6px;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   FRASE (CITAÇÃO)
+   ========================= */
+
+.quote {
+  padding: var(--space-4);
+}
+
+.quote__divider {
+  height: 1px;
+  background: var(--surface-divider);
+  margin-bottom: var(--space-3);
+}
+
+.quote__text {
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.quote__author {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   UTILITÁRIOS DE BORDA
+   ========================= */
+
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+
+.rounded-pill {
+  border-radius: var(--radius-pill);
+}
+
+/* =========================
+   UTILITÁRIOS DE FUNDO
+   ========================= */
+
+.surface-primary {
+  background: var(--bg-primary);
+}
+
+.surface-secondary {
+  background: var(--bg-secondary);
+}
+
+.surface-tertiary {
+  background: var(--bg-tertiary);
+    }
