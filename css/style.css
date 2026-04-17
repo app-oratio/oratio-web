@@ -409,3 +409,54 @@ a {
 .surface-tertiary {
   background: var(--bg-tertiary);
     }
+
+/* =========================
+   LAYOUT RESPONSIVO (COLUNAS)
+   ========================= */
+
+/* Container de colunas */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Colunas base */
+.col {
+  width: 100%;
+}
+
+/* =========================
+   COMPORTAMENTO MOBILE
+   ========================= */
+
+/* Inverte ordem apenas no mobile */
+.inverter-mobile {
+  order: -1;
+}
+
+/* =========================
+   DESKTOP (DUAS COLUNAS)
+   ========================= */
+
+@media (min-width: 1024px) {
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  /* Coluna principal ocupa mais espaço */
+  .col-main {
+    flex: 2;
+  }
+
+  /* Coluna secundária menor */
+  .col-side {
+    flex: 1;
+  }
+
+  /* Reset da inversão no desktop */
+  .inverter-mobile {
+    order: initial;
+  }
+}
