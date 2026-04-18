@@ -1,17 +1,26 @@
 class ToolbarComponent extends HTMLElement {
 
   connectedCallback() {
+    this.injectCSS();
+
     this.innerHTML = `
       <div class="toolbar">
         <img src="/icons/menu/menu-white.png" class="menu-btn">
-        <img src="/icons/logo/white-completo.png" class="logo-top">
+
+        <div class="brand">
+          <img src="/icons/logo/logo-white.png" class="brand-logo">
+          <span class="brand-text">Oratio | App Católico</span>
+        </div>
       </div>
 
       <div class="overlay"></div>
 
       <div class="drawer">
         <div class="drawer-header">
-          <img src="/icons/logo/white-completo.png" class="logo">
+          <div class="brand">
+            <img src="/icons/logo/logo-white.png" class="brand-logo">
+            <span class="brand-text">Oratio | App Católico</span>
+          </div>
         </div>
 
         <nav class="menu">
@@ -55,6 +64,17 @@ class ToolbarComponent extends HTMLElement {
     this.highlightActiveRoute();
   }
 
+  injectCSS() {
+    if (document.getElementById("toolbar-css")) return;
+
+    const link = document.createElement("link");
+    link.id = "toolbar-css";
+    link.rel = "stylesheet";
+    link.href = "/css/toolbar.css";
+
+    document.head.appendChild(link);
+  }
+
   menuItem(label, link) {
     return `<a href="${link}" class="menu-item">${label}</a>`;
   }
@@ -89,7 +109,6 @@ class ToolbarComponent extends HTMLElement {
     btn.addEventListener("click", toggleMenu);
     overlay.addEventListener("click", toggleMenu);
 
-    // Submenus
     this.querySelectorAll(".menu-group-header").forEach(header => {
       header.addEventListener("click", () => {
         const target = this.querySelector("#" + header.dataset.target);
