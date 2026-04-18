@@ -177,4 +177,4 @@ class ToolbarComponent extends HTMLElement {
 
 }
 
-customElements.define("toolbar", ToolbarComponent);
+customElements.define("site-toolbar", SiteToolbar);
