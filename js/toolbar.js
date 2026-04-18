@@ -1,21 +1,35 @@
+if (!document.getElementById("toolbar-css")) {
+  const link = document.createElement("link");
+  link.id = "toolbar-css";
+  link.rel = "stylesheet";
+  link.href = "/css/toolbar.css";
+  document.head.appendChild(link);
+}
+
 class ToolbarComponent extends HTMLElement {
 
   connectedCallback() {
-    this.injectCSS();
+
+    const year = new Date().getFullYear();
 
     this.innerHTML = `
       <div class="toolbar">
-        <img src="/icons/menu/menu-white.png" class="menu-btn">
 
-        <div class="brand">
-          <img src="/icons/logo/logo-white.png" class="brand-logo">
-          <span class="brand-text">Oratio | App Católico</span>
+        <div class="toolbar-left">
+          <img src="/icons/menu/menu-white.png" class="toolbar-menu" id="menuButton">
+          
+          <div class="brand">
+            <img src="/icons/logo/logo-white.png" class="brand-logo">
+            <span class="brand-text">Oratio | App Católico</span>
+          </div>
         </div>
+
       </div>
 
-      <div class="overlay"></div>
+      <div class="drawer-overlay" id="drawerOverlay"></div>
 
-      <div class="drawer">
+      <div class="drawer" id="drawer">
+
         <div class="drawer-header">
           <div class="brand">
             <img src="/icons/logo/logo-white.png" class="brand-logo">
@@ -23,8 +37,9 @@ class ToolbarComponent extends HTMLElement {
           </div>
         </div>
 
-        <nav class="menu">
-          ${this.menuItem("Início", "/")}
+        <div class="drawer-items">
+
+          <a href="/">Início</a>
 
           ${this.menuGroup("Orações", [
             ["Terços e Rosários", "/oracoes/terco"],
@@ -32,51 +47,39 @@ class ToolbarComponent extends HTMLElement {
             ["Outras orações", "/oracoes/outras"]
           ])}
 
-          ${this.menuItem("Meditações", "/meditacoes")}
+          <a href="/meditacoes">Meditações</a>
 
           ${this.menuGroup("Liturgia", [
             ["Liturgia Diária", "/liturgia"],
             ["Liturgia das Horas", "/liturgia/liturgia-das-horas"]
           ])}
 
-          ${this.menuItem("Blog", "/blog")}
-          ${this.menuItem("Pedidos de Oração", "/intencoes/")}
-          ${this.menuItem("Wallpapers", "/wallpapers")}
+          <a href="/blog">Blog</a>
+          <a href="/intencoes/">Pedidos de Oração</a>
+          <a href="/wallpapers">Wallpapers</a>
 
           ${this.menuGroup("Biblioteca", [
             ["Bíblias", "/biblias"],
             ["Livros", "/livros"]
           ])}
 
-          ${this.menuItem("Santos", "/santos")}
-          ${this.menuItem("Ajude-nos", "/ajude")}
-          ${this.menuItem("Contato", "/contato")}
-          ${this.menuItem("Sobre", "/sobre")}
-        </nav>
+          <a href="/santos">Santos</a>
+          <a href="/ajude">Ajude-nos</a>
+          <a href="/contato">Contato</a>
+          <a href="/sobre">Sobre</a>
+
+        </div>
 
         <div class="drawer-footer">
           © Oratio - App Católico 2024-2026
         </div>
+
       </div>
     `;
 
-    this.bindEvents();
-    this.highlightActiveRoute();
-  }
-
-  injectCSS() {
-    if (document.getElementById("toolbar-css")) return;
-
-    const link = document.createElement("link");
-    link.id = "toolbar-css";
-    link.rel = "stylesheet";
-    link.href = "/css/toolbar.css";
-
-    document.head.appendChild(link);
-  }
-
-  menuItem(label, link) {
-    return `<a href="${link}" class="menu-item">${label}</a>`;
+    this.setupEvents();
+    this.setupSubmenus();
+    this.highlightActive();
   }
 
   menuGroup(title, items) {
@@ -84,6 +87,7 @@ class ToolbarComponent extends HTMLElement {
 
     return `
       <div class="menu-group">
+
         <div class="menu-group-header" data-target="${id}">
           <span>${title}</span>
           <img src="/icons/menu/expand.png" class="toggle-icon">
@@ -92,25 +96,30 @@ class ToolbarComponent extends HTMLElement {
         <div class="submenu" id="${id}">
           ${items.map(i => `<a href="${i[1]}">${i[0]}</a>`).join("")}
         </div>
+
       </div>
     `;
   }
 
-  bindEvents() {
-    const drawer = this.querySelector(".drawer");
-    const overlay = this.querySelector(".overlay");
-    const btn = this.querySelector(".menu-btn");
+  setupEvents() {
+    const menu = this.querySelector("#menuButton");
+    const drawer = this.querySelector("#drawer");
+    const overlay = this.querySelector("#drawerOverlay");
 
-    const toggleMenu = () => {
-      drawer.classList.toggle("open");
-      overlay.classList.toggle("open");
+    menu.onclick = () => {
+      drawer.classList.add("open");
+      overlay.classList.add("show");
     };
 
-    btn.addEventListener("click", toggleMenu);
-    overlay.addEventListener("click", toggleMenu);
+    overlay.onclick = () => {
+      drawer.classList.remove("open");
+      overlay.classList.remove("show");
+    };
+  }
 
+  setupSubmenus() {
     this.querySelectorAll(".menu-group-header").forEach(header => {
-      header.addEventListener("click", () => {
+      header.onclick = () => {
         const target = this.querySelector("#" + header.dataset.target);
         const icon = header.querySelector(".toggle-icon");
 
@@ -119,11 +128,11 @@ class ToolbarComponent extends HTMLElement {
         icon.src = isOpen
           ? "/icons/menu/collapsing.png"
           : "/icons/menu/expand.png";
-      });
+      };
     });
   }
 
-  highlightActiveRoute() {
+  highlightActive() {
     let currentPath = window.location.pathname;
 
     if (currentPath.length > 1 && currentPath.endsWith("/")) {
@@ -165,6 +174,7 @@ class ToolbarComponent extends HTMLElement {
       }
     });
   }
+
 }
 
 customElements.define("toolbar", ToolbarComponent);
