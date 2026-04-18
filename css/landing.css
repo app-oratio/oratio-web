@@ -1,32 +1,22 @@
 /* =========================
-   LANDING HERO - ORATIO (GRID)
+   LANDING PAGE - ORATIO
    ========================= */
 
-.landing-hero {
+.landing-oratio {
+  padding: var(--space-6);
   background-color: var(--bg-primary);
-  padding: var(--space-5) var(--space-4);
 }
 
-/* Container principal */
+/* Container externo (coluna única) */
 .landing-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* =========================
-   IMAGEM
-   ========================= */
-
-.landing-image {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: center;
+  text-align: center;
 }
 
+/* Imagem */
 .landing-image img {
   width: 100%;
   max-width: 320px;
@@ -34,62 +24,61 @@
   border-radius: 16px;
 }
 
-/* =========================
-   CONTEÚDO
-   ========================= */
-
+/* Conteúdo */
 .landing-content {
-  text-align: center;
   max-width: 600px;
-  margin: 0 auto;
 }
 
 .landing-content h1 {
-  font-size: 1.6rem;
-  color: var(--text-primary);
+  font-size: 1.5rem;
   margin-bottom: var(--space-3);
+  color: var(--text-primary);
 }
 
 .landing-content p {
+  font-size: 1rem;
   color: var(--text-secondary);
-  line-height: 1.6;
   margin-bottom: var(--space-4);
+  line-height: 1.6;
 }
 
-/* =========================
-   BOTÃO
-   ========================= */
-
-.btn-primary {
+/* Botão */
+.btn-landing {
   display: inline-block;
   background-color: var(--button-primary);
   color: var(--button-on-primary);
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 500;
-  transition: opacity 0.2s ease;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
 }
 
 /* =========================
-   DESKTOP (GRID LADO A LADO)
+   DESKTOP
    ========================= */
 
-@media (min-width: 1024px) {
-
+@media (min-width: 768px) {
   .landing-container {
-    grid-template-columns: 360px 1fr;
-    align-items: center;
-    gap: 40px;
+    flex-direction: row;
+    text-align: left;
+    justify-content: center;
+  }
+
+  .landing-image,
+  .landing-content {
+    flex: 1;
+  }
+
+  .landing-image {
+    display: flex;
+    justify-content: center;
   }
 
   .landing-content {
-    text-align: left;
-    margin: 0;
+    max-width: 500px;
   }
 
+  .landing-content h1 {
+    font-size: 2rem;
+  }
 }
