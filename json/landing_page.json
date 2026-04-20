@@ -1,0 +1,17 @@
+[
+  {
+    "imagem": "/imagens/landing-carousel1.png",
+    "titulo": "Totalmente gratuito",
+    "texto": "Sem anúncios, sem cobranças, sem planos pagos. O Oratio é um apostolado sustentado apenas pela Providência e pela generosidade dos fiéis."
+  },
+  {
+    "imagem": "/imagens/landing-carousel2.png",
+    "titulo": "Fidelidade à Tradição",
+    "texto": "O Oratio oferece orações autênticas, profundas e fiéis à Tradição da Igreja. Cada palavra foi escolhida com zelo, para conduzir a alma a uma verdadeira vida de oração, sem adaptações modernas nem distrações mundanas."
+  },
+  {
+    "imagem": "/imagens/landing-carousel3.png",
+    "titulo": "Simples, intuitivo e sem distrações",
+    "texto": "Pensado para todos: jovens, idosos, iniciantes na fé ou católicos de longa caminhada. Navegação clara, textos bem organizados e um ambiente que favorece a oração — sem pop-ups, notificações vazias ou interrupções."
+  }
+]
