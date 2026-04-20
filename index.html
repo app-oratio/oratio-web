@@ -35,41 +35,53 @@
 <site-toolbar></site-toolbar>
 <script src="/js/toolbar.js"></script>
 
-<section class="landing-oratio layout">
-  <div class="landing-container col col-main">
+<section class="landing-topo">
 
-    <!-- Imagem -->
-    <div class="landing-image">
-      <img src="/imagens/landing_page1.png" alt="Aplicativo Oratio em dois celulares">
+  <!-- ESQUERDA: LANDING PRINCIPAL -->
+  <div class="landing-esquerda">
+    <div class="landing-container">
+
+      <!-- Imagem -->
+      <div class="landing-image">
+        <img src="/imagens/landing_page1.png" alt="Aplicativo Oratio em dois celulares">
+      </div>
+
+      <!-- Conteúdo -->
+      <div class="landing-content">
+        <h1>Oratio: orações, terços, devocionais, livros, liturgia e muito mais!</h1>
+
+        <p>
+          O Oratio é mais do que um aplicativo: é um apostolado católico que nasceu para ajudar almas a rezarem com constância, profundidade e fidelidade à Igreja. Aqui você encontra orações tradicionais, novenas, metas espirituais e conteúdos formativos para crescer na fé católica. Tudo em um só lugar, gratuito e sem distrações mundanas.
+        </p>
+
+        <a 
+          href="https://play.google.com/store/apps/details?id=com.apostoladoimc.oratio"
+          class="btn-landing"
+          target="_blank"
+        >
+          Baixe grátis na Google Play
+        </a>
+      </div>
+
     </div>
-
-    <!-- Conteúdo -->
-    <div class="landing-content">
-      <h1>Oratio: orações, terços, devocionais, livros, liturgia e muito mais!</h1>
-
-      <p>
-        O Oratio é mais do que um aplicativo: é um apostolado católico que nasceu para ajudar almas a rezarem com constância, profundidade e fidelidade à Igreja. Aqui você encontra orações tradicionais, novenas, metas espirituais e conteúdos formativos para crescer na fé católica. Tudo em um só lugar, gratuito e sem distrações mundanas.
-      </p>
-
-      <a 
-        href="https://play.google.com/store/apps/details?id=com.apostoladoimc.oratio" 
-        class="btn-landing"
-        target="_blank"
-      >
-        Baixe grátis na Google Play
-      </a>
-    </div>
-
   </div>
 
-  <section class="landing-carousel col col-side">
-  <div class="carousel-track" id="carouselTrack"></div>
+  <!-- DIREITA: CARROSSEL -->
+  <div class="landing-direita">
+    <section class="landing-carousel">
 
-  <div class="carousel-controls">
-    <button id="prevBtn">‹</button>
-    <button id="nextBtn">›</button>
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Slides serão inseridos via JSON -->
+      </div>
+
+      <div class="carousel-controls">
+        <button id="prevBtn">‹</button>
+        <button id="nextBtn">›</button>
+      </div>
+
+    </section>
   </div>
-  </section>
+
 </section>
 
 <script>
