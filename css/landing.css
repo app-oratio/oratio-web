@@ -95,6 +95,7 @@
 
 .landing-carousel {
   width: 100%;
+  overflow: hidden; /* CORREÇÃO PRINCIPAL */
 }
 
 /* Trilho */
