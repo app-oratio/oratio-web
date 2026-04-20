@@ -82,3 +82,71 @@
     font-size: 2rem;
   }
 }
+
+/* =========================
+   CARROSSEL LANDING
+   ========================= */
+
+.landing-carousel {
+  overflow: hidden;
+  padding: var(--space-6);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+/* Slide */
+.carousel-slide {
+  min-width: 100%;
+  padding: var(--space-4);
+  box-sizing: border-box;
+}
+
+/* Card */
+.carousel-card {
+  background-color: var(--color-primary);
+  border-radius: 24px;
+  overflow: hidden;
+  text-align: center;
+  color: var(--button-on-primary);
+}
+
+/* Imagem */
+.carousel-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Conteúdo */
+.carousel-content {
+  padding: var(--space-4);
+}
+
+.carousel-content h2 {
+  margin-bottom: var(--space-3);
+}
+
+.carousel-content p {
+  line-height: 1.6;
+}
+
+/* Controles */
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: var(--space-4);
+}
+
+.carousel-controls button {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+}
