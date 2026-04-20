@@ -1,19 +1,55 @@
 /* =========================
-   LANDING PAGE - ORATIO
+   LANDING TOPO (CONTAINER)
    ========================= */
 
-.landing-oratio {
+.landing-topo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
   padding: var(--space-6);
-  background-color: var(--bg-primary);
 }
 
-/* Container externo (coluna única) */
+/* Desktop: lado a lado */
+@media (min-width: 1024px) {
+  .landing-topo {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .landing-esquerda {
+    flex: 1.2;
+  }
+
+  .landing-direita {
+    flex: 1;
+  }
+}
+
+/* =========================
+   LANDING ESQUERDA
+   ========================= */
+
 .landing-container {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
   align-items: center;
   text-align: center;
+}
+
+/* Desktop: imagem + texto lado a lado */
+@media (min-width: 768px) {
+  .landing-container {
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .landing-image,
+  .landing-content {
+    flex: 1;
+  }
 }
 
 /* Imagem */
@@ -26,11 +62,11 @@
 
 /* Conteúdo */
 .landing-content {
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .landing-content h1 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-bottom: var(--space-3);
   color: var(--text-primary);
 }
@@ -54,61 +90,29 @@
 }
 
 /* =========================
-   DESKTOP
-   ========================= */
-
-@media (min-width: 768px) {
-  .landing-container {
-    flex-direction: row;
-    text-align: left;
-    justify-content: center;
-  }
-
-  .landing-image,
-  .landing-content {
-    flex: 1;
-  }
-
-  .landing-image {
-    display: flex;
-    justify-content: center;
-  }
-
-  .landing-content {
-    max-width: 500px;
-  }
-
-  .landing-content h1 {
-    font-size: 2rem;
-  }
-}
-
-/* =========================
-   CARROSSEL LANDING
+   CARROSSEL
    ========================= */
 
 .landing-carousel {
-  overflow: hidden;
-  padding: var(--space-6);
+  width: 100%;
 }
 
 /* Trilho */
 .carousel-track {
   display: flex;
   transition: transform 0.4s ease;
-  height: 100%;
 }
 
-/* Slide ocupa altura da tela */
+/* Slide */
 .carousel-slide {
   min-width: 100%;
-  height: calc(100vh - 80px); /* ajuste conforme altura da toolbar */
+  height: 480px;
   padding: var(--space-4);
   box-sizing: border-box;
   display: flex;
 }
 
-/* Card principal */
+/* Card */
 .carousel-card {
   width: 100%;
   height: 100%;
@@ -120,14 +124,14 @@
   color: var(--button-on-primary);
 }
 
-/* Imagem no topo (fixa e consistente) */
+/* Imagem */
 .carousel-card img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 45%;
   object-fit: cover;
 }
 
-/* Conteúdo ocupa o restante */
+/* Conteúdo */
 .carousel-content {
   flex: 1;
   padding: var(--space-4);
@@ -137,13 +141,11 @@
   text-align: center;
 }
 
-/* Título */
 .carousel-content h2 {
   margin-bottom: var(--space-3);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
-/* Texto */
 .carousel-content p {
   line-height: 1.6;
 }
@@ -164,18 +166,24 @@
   width: 36px;
   height: 36px;
   font-size: 18px;
+  cursor: pointer;
 }
 
 /* =========================
-   MOBILE AJUSTES
+   MOBILE
    ========================= */
 
 @media (max-width: 768px) {
   .carousel-slide {
-    height: 85vh;
+    height: auto;
+  }
+
+  .carousel-card img {
+    aspect-ratio: 1 / 1;
+    height: auto;
   }
 
   .carousel-content {
     justify-content: flex-start;
   }
-   }
+}
