@@ -61,7 +61,65 @@
     </div>
 
   </div>
+
+  <section class="landing-carousel">
+  <div class="carousel-track" id="carouselTrack"></div>
+
+  <div class="carousel-controls">
+    <button id="prevBtn">‹</button>
+    <button id="nextBtn">›</button>
+  </div>
+  </section>
 </section>
+
+<script>
+  const track = document.getElementById("carouselTrack");
+let currentIndex = 0;
+let slides = [];
+
+// Carregar JSON
+fetch("/json/landing_page.json")
+  .then(res => res.json())
+  .then(data => {
+    slides = data;
+
+    data.forEach(item => {
+      const slide = document.createElement("div");
+      slide.className = "carousel-slide";
+
+      slide.innerHTML = `
+        <div class="carousel-card">
+          <img src="${item.imagem}" alt="${item.titulo}">
+          <div class="carousel-content">
+            <h2>${item.titulo}</h2>
+            <p>${item.texto}</p>
+          </div>
+        </div>
+      `;
+
+      track.appendChild(slide);
+    });
+  });
+
+// Navegação
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+document.getElementById("nextBtn").onclick = () => {
+  if (currentIndex < slides.length - 1) {
+    currentIndex++;
+    updateCarousel();
+  }
+};
+
+document.getElementById("prevBtn").onclick = () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateCarousel();
+  }
+};
+</script>
   
 </body>
 </html>
