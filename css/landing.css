@@ -22,6 +22,8 @@
 
   .landing-direita {
     flex: 1;
+    display: flex;
+    justify-content: center; /* centraliza o carrossel */
   }
 }
 
@@ -95,7 +97,16 @@
 
 .landing-carousel {
   width: 100%;
-  overflow: hidden; /* CORREÇÃO PRINCIPAL */
+  max-width: 420px; /* LIMITE DE LARGURA */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Ajuste fino no desktop */
+@media (min-width: 1024px) {
+  .landing-carousel {
+    max-width: 380px;
+  }
 }
 
 /* Trilho */
@@ -187,4 +198,4 @@
   .carousel-content {
     justify-content: flex-start;
   }
-}
+   }
