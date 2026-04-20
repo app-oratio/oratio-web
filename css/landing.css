@@ -9,27 +9,35 @@
   padding: var(--space-6);
 }
 
-/* Desktop: lado a lado */
+/* Desktop: lado a lado e centralizado */
 @media (min-width: 1024px) {
   .landing-topo {
     flex-direction: row;
     align-items: center;
+    justify-content: center;
   }
 
   .landing-esquerda {
     flex: 1.2;
+    max-width: 720px; /* LIMITE DA SEÇÃO PRINCIPAL */
   }
 
   .landing-direita {
     flex: 1;
     display: flex;
-    justify-content: center; /* centraliza o carrossel */
+    justify-content: center;
   }
 }
 
 /* =========================
    LANDING ESQUERDA
    ========================= */
+
+.landing-esquerda {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
 
 .landing-container {
   display: flex;
@@ -64,7 +72,7 @@
 
 /* Conteúdo */
 .landing-content {
-  max-width: 500px;
+  max-width: 520px;
 }
 
 .landing-content h1 {
@@ -198,4 +206,4 @@
   .carousel-content {
     justify-content: flex-start;
   }
-   }
+}
