@@ -76,7 +76,7 @@ function startAutoplay() {
 
   autoplayInterval = setInterval(() => {
     nextSlide();
-  }, 10000);
+  }, 7000);
 }
 
 function stopAutoplay() {
