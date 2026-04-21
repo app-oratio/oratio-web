@@ -41,6 +41,7 @@ fetch("/json/landing_page.json")
    ========================= */
 
 function updateCarousel() {
+  track.style.transition = "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
@@ -52,7 +53,7 @@ function nextSlide() {
   if (currentIndex < slides.length - 1) {
     currentIndex++;
   } else {
-    currentIndex = 0; // volta ao início
+    currentIndex = 0;
   }
   updateCarousel();
 }
@@ -61,7 +62,7 @@ function prevSlide() {
   if (currentIndex > 0) {
     currentIndex--;
   } else {
-    currentIndex = slides.length - 1; // vai para o último
+    currentIndex = slides.length - 1;
   }
   updateCarousel();
 }
@@ -85,24 +86,73 @@ function stopAutoplay() {
 }
 
 /* =========================
-   EVENTOS
+   BOTÕES
    ========================= */
 
-// Botões
-nextBtn.onclick = () => {
-  stopAutoplay();
-  nextSlide();
-};
+if (nextBtn && prevBtn) {
+  nextBtn.onclick = () => {
+    stopAutoplay();
+    nextSlide();
+  };
 
-prevBtn.onclick = () => {
-  stopAutoplay();
-  prevSlide();
-};
+  prevBtn.onclick = () => {
+    stopAutoplay();
+    prevSlide();
+  };
+}
 
-// Hover (desktop)
+/* =========================
+   PAUSA POR INTERAÇÃO
+   ========================= */
+
+// Desktop (hover)
 track.addEventListener("mouseenter", stopAutoplay);
 track.addEventListener("mouseleave", startAutoplay);
 
-// Touch (mobile)
+// Mobile (toque)
 track.addEventListener("touchstart", stopAutoplay);
 track.addEventListener("touchend", startAutoplay);
+
+/* =========================
+   SWIPE (MOBILE)
+   ========================= */
+
+let startX = 0;
+let isDragging = false;
+
+track.addEventListener("touchstart", (e) => {
+  stopAutoplay();
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+track.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+
+  const currentX = e.touches[0].clientX;
+  const diff = currentX - startX;
+
+  // remove transição durante drag
+  track.style.transition = "none";
+  track.style.transform = `translateX(calc(-${currentIndex * 100}% + ${diff}px))`;
+});
+
+track.addEventListener("touchend", (e) => {
+  if (!isDragging) return;
+
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+
+  isDragging = false;
+
+  // threshold
+  if (diff > 50) {
+    nextSlide();
+  } else if (diff < -50) {
+    prevSlide();
+  } else {
+    updateCarousel();
+  }
+
+  startAutoplay();
+});
