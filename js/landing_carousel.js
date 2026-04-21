@@ -2,7 +2,7 @@ const track = document.getElementById("carouselTrack");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 
-let currentIndex = 0;
+let currentIndex = 1;
 let slides = [];
 let autoplayInterval = null;
 
@@ -15,7 +15,18 @@ fetch("/json/landing_page.json")
   .then(data => {
     slides = data;
 
-    data.forEach(item => {
+    const items = [];
+
+    // clone do último (vai no começo)
+    items.push(slides[slides.length - 1]);
+
+    // slides reais
+    slides.forEach(item => items.push(item));
+
+    // clone do primeiro (vai no final)
+    items.push(slides[0]);
+
+    items.forEach(item => {
       const slide = document.createElement("div");
       slide.className = "carousel-slide";
 
@@ -32,7 +43,7 @@ fetch("/json/landing_page.json")
       track.appendChild(slide);
     });
 
-    updateCarousel();
+    updateCarousel(false);
     startAutoplay();
   });
 
@@ -40,35 +51,48 @@ fetch("/json/landing_page.json")
    ATUALIZAR POSIÇÃO
    ========================= */
 
-function updateCarousel() {
-  track.style.transition = "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+function updateCarousel(animate = true) {
+  track.style.transition = animate
+    ? "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)"
+    : "none";
+
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
+
+/* =========================
+   TRANSIÇÃO INFINITA
+   ========================= */
+
+track.addEventListener("transitionend", () => {
+  // chegou no clone do último
+  if (currentIndex === 0) {
+    currentIndex = slides.length;
+    updateCarousel(false);
+  }
+
+  // chegou no clone do primeiro
+  if (currentIndex === slides.length + 1) {
+    currentIndex = 1;
+    updateCarousel(false);
+  }
+});
 
 /* =========================
    NAVEGAÇÃO
    ========================= */
 
 function nextSlide() {
-  if (currentIndex < slides.length - 1) {
-    currentIndex++;
-  } else {
-    currentIndex = 0;
-  }
+  currentIndex++;
   updateCarousel();
 }
 
 function prevSlide() {
-  if (currentIndex > 0) {
-    currentIndex--;
-  } else {
-    currentIndex = slides.length - 1;
-  }
+  currentIndex--;
   updateCarousel();
 }
 
 /* =========================
-   AUTOPLAY (10s)
+   AUTOPLAY
    ========================= */
 
 function startAutoplay() {
@@ -102,19 +126,17 @@ if (nextBtn && prevBtn) {
 }
 
 /* =========================
-   PAUSA POR INTERAÇÃO
+   INTERAÇÃO
    ========================= */
 
-// Desktop (hover)
 track.addEventListener("mouseenter", stopAutoplay);
 track.addEventListener("mouseleave", startAutoplay);
 
-// Mobile (toque)
 track.addEventListener("touchstart", stopAutoplay);
 track.addEventListener("touchend", startAutoplay);
 
 /* =========================
-   SWIPE (MOBILE)
+   SWIPE
    ========================= */
 
 let startX = 0;
@@ -132,7 +154,6 @@ track.addEventListener("touchmove", (e) => {
   const currentX = e.touches[0].clientX;
   const diff = currentX - startX;
 
-  // remove transição durante drag
   track.style.transition = "none";
   track.style.transform = `translateX(calc(-${currentIndex * 100}% + ${diff}px))`;
 });
@@ -145,7 +166,6 @@ track.addEventListener("touchend", (e) => {
 
   isDragging = false;
 
-  // threshold
   if (diff > 50) {
     nextSlide();
   } else if (diff < -50) {
