@@ -460,3 +460,51 @@ a {
     order: initial;
   }
 }
+
+
+/* =========================
+   CONTAINER PRINCIPAL (CONTENT)
+   ========================= */
+
+.content {
+  /* Centraliza no desktop */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Margem interna padrão (mobile) */
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+
+  /* Evita conteúdo colado na toolbar/footer */
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-5);
+
+  /* Limite máximo para não esticar demais no desktop */
+  max-width: 1200px;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (min-width: 768px) {
+  .content {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-6);
+  }
+}
+
+/* =========================
+   DESKTOP
+   ========================= */
+
+@media (min-width: 1024px) {
+  .content {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+}
