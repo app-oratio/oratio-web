@@ -1,0 +1,131 @@
+# =========================
+# IDENTIDADE DO SITE
+# =========================
+
+title: Oratio | App Católico          # Nome do site
+description: Apostolado digital católico com orações, meditações e conteúdo espiritual
+url: "https://web.oratioapp.com.br"  # URL principal do site
+baseurl: ""                          # Subpasta (ex: "/oratio") se não estiver na raiz
+lang: pt-BR                          # Idioma padrão
+timezone: America/Sao_Paulo          # Fuso horário
+
+
+# =========================
+# AUTOR
+# =========================
+
+author:
+    name: Paulo Ricardo
+    bio: Fundador do Oratio e servo de Nossa Senhora
+    avatar: /images/autores/paulo.png
+    instagram: ""
+    cargo: Fundador
+
+
+# =========================
+# CONFIGURAÇÃO DE POSTS
+# =========================
+
+permalink: /blog/:title/             # URL dos posts (ex: /blog/meu-post/)
+future: false                        # NÃO mostra posts com data futura (usado para "agendamento")
+unpublished: false                   # Não mostra rascunhos
+
+
+# =========================
+# COLEÇÕES (ALÉM DO BLOG)
+# =========================
+
+collections:
+  oracoes:
+    output: true                     # Gera página para cada oração
+    permalink: /oracoes/:type/:slug/       # URL das orações
+
+  meditacoes:
+    output: true
+    permalink: /meditacoes/:title/
+
+# =========================
+# PADRÕES AUTOMÁTICOS
+# =========================
+
+defaults:
+  # Posts do blog
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+  # Orações
+  - scope:
+      path: ""
+      type: "oracoes"
+    values:
+      layout: "oracao"
+
+  # Meditações
+  - scope:
+      path: ""
+      type: "meditacoes"
+    values:
+      layout: "meditacao"
+
+
+# =========================
+# PLUGINS SUPORTADOS (GitHub Pages)
+# =========================
+
+plugins:
+  - jekyll-feed                     # RSS automático
+  - jekyll-sitemap                 # Sitemap para SEO
+  - jekyll-seo-tag                 # Meta tags automáticas
+
+
+# =========================
+# MARKDOWN
+# =========================
+
+markdown: kramdown                  # Processador Markdown
+highlighter: rouge                 # Destaque de código
+
+kramdown:
+  input: GFM                        # Estilo GitHub Flavored Markdown
+
+# =========================
+# ARQUIVOS E PASTAS
+# =========================
+
+include:
+  - _pages                          # Inclui pasta personalizada (opcional)
+
+exclude:
+  - node_modules
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+
+
+# =========================
+# SEO (OPCIONAL, MAS RECOMENDADO)
+# =========================
+
+google_analytics: "G-HH95KQVN40"                # Coloque seu ID se usar
+
+social:
+  name: Oratio
+  links:
+    - https://oratioapp.com.br
+
+
+# =========================
+# VARIÁVEIS PERSONALIZADAS (MUY IMPORTANTE)
+# =========================
+
+app:
+  nome: Oratio
+  descricao: App Católico
+  cor_tema: "#004a98"
+
+  # Caminhos úteis
+  logo: /icons/logo/logo-white.png
+  menu_icon: /icons/menu/menu-white.png
