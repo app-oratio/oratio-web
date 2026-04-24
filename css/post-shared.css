@@ -1,0 +1,32 @@
+.post-share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Botões quadrados estilo da imagem */
+.share-btn {
+  width: 90px;
+  height: 60px;
+  background: var(--color-primary, #004a98);
+  border: none;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Ícones */
+.share-btn img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Feedback visual simples */
+.share-btn:active {
+  transform: scale(0.95);
+}
