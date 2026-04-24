@@ -15,27 +15,27 @@ class PostShare extends HTMLElement {
       <div class="post-share">
 
         <button class="share-btn facebook" data-url="${url}">
-          <img src="/icons/shared/facebook.png" alt="Facebook">
+          <img src="/icons/shared/facebook.svg" alt="Facebook">
         </button>
 
         <button class="share-btn twitter" data-title="${title}" data-url="${url}">
-          <img src="/icons/shared/x.png" alt="X">
+          <img src="/icons/shared/x.svg" alt="X">
         </button>
 
         <button class="share-btn whatsapp" data-title="${title}" data-url="${url}">
-          <img src="/icons/shared/whatsapp.png" alt="WhatsApp">
+          <img src="/icons/shared/whatsapp.svg" alt="WhatsApp">
         </button>
 
         <button class="share-btn telegram" data-title="${title}" data-url="${url}">
-          <img src="/icons/shared/telegram.png" alt="Telegram">
+          <img src="/icons/shared/telegram.svg" alt="Telegram">
         </button>
 
         <button class="share-btn copy" data-url="${url}">
-          <img src="/icons/shared/copiar.png" alt="Copiar link">
+          <img src="/icons/shared/copiar.svg" alt="Copiar link">
         </button>
 
         <button class="share-btn native" data-title="${title}" data-url="${url}" data-description="${description}">
-          <img src="/icons/shared/compartilhar.png" alt="Compartilhar">
+          <img src="/icons/shared/compartilhar.svg" alt="Compartilhar">
         </button>
 
       </div>
