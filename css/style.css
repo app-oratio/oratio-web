@@ -57,7 +57,7 @@
    TEMA ESCURO
    ========================= */
 
-[data-theme="dark"] {
+/* [data-theme="dark"] {
   --bg-primary: #121212;
   --bg-secondary: #1e1e1e;
   --bg-tertiary: #2c2c2c;
@@ -81,7 +81,7 @@
   --ripple-color: rgba(255, 255, 255, 0.12);
 
   --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.28);
-}
+} */
 
 /* =========================
    RESET BÁSICO
